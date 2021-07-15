@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Uniledge | Вход</title>
+	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="stylesheet" href="css/main.css">
+
+	<style>
+		#popup.active {
+			top: 50%;
+			visibility: visible;
+			opacity: 1;
+			transition: 0.5s;
+		}
+
+		#popup.active + html {
+			overflow-y: hidden;
+		}
+
+		.login-page#login-page.active, .footer#footer.active, .header#header.active {
+			filter: blur(20px);
+			user-select: none;
+			pointer-events: none;
+		}
+
+		#popup input {
+			text-align: center;
+		}
+
+		#popup {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			margin-right: -50%;
+			transform: translate(-50%, -50%);
+			width: 50%;
+			height: auto;
+			padding: 5%;
+			box-shadow: 0px 10px 39px -11px rgba(0,0,0,.62);
+			visibility: hidden;
+			opacity: 0;
+			transition: 0.5s;
+			border-radius: 5px;
+			display: flex;
+			flex-direction: column;
+			-ms-align-items: center;
+			align-items: center;
+			justify-content: center;
+			background: #fff;
+		}
+
+		@media screen and (max-width: 768px) {
+			#popup {
+				width: 100vw;
+				height: 100vh;
+				top: 0!important;
+				left: 0;
+				transform: none;
+
+			}
+		}
+	</style>
+
+</head>
+<body>
+
+	<header class="header login-section" id="header">
+		<p class="beta">Сайт находится в бета-версии. Разработка продолжается.</p>
+			<nav id="navbar" class="navbar">
+				<a href="index.php"><div class="logo" id="logo">
+					<h3><span>Uni</span>ledge</h3>
+					<div class="line">
+						<div class="blue"></div>
+					</div>
+				</div></a>
+
+				<form class="search-box" id="search-box" action="search.php" method="POST">
+					<div class="zoom" id="zoom"><img src="img/Zoom.svg" alt="Поиск"></div>
+					<input type="text" name="search-input" placeholder="Мой любимый университет" pattern="^[A-Za-zА-Яа-яЁё0-9\s]+$" class="search-input" id="search-input" title="Разрешен ввод только русских и латинских букв">
+				</form>
+
+				<div class="menu">
+					<ul class="topmenu" id="topmenu">
+						<li><a href="Login.html" class="login-btn">Войти</a></li>
+						<li><a href="signup.html" class="registration-btn">Регистрация</a></li>
+					</ul>
+				</div>
+			</nav>
+	</header>
+
+
+	<section id="login-page" class="login-page">
+		<img src="img/bg-item2.svg" alt="" class="bg-item2 item3">
+		<form action="reg.php" method="post">
+
+			<div class="general-off">				
+					<div class="general-login">
+						<h1><span>Привет!</span><br>Мы рады видеть тебя снова!</h1>
+						<p id="txt"></p>
+						<label for="email-login">Email</label>
+						<input type="email" name="email-login" pattern='^[A-Za-zА0-9@,."-_\s]+$' class="email-login" id="email-login" required>
+						<label for="password-login">Пароль</label>
+						<input type="password" name="password-login" pattern='^[A-Za-zА-Яа-яЁё0-9@,."\s]+$' class="email-login" id="password-login" minlength="5" maxlength="16" required>
+						
+					</div>
+					<button type="submit" class="disabled-btn" name="login_button" style="text-align: center" id="auth-btn" disabled>Войти</button>
+					<a href="signup.html" class="btn" style="text-align: center;  cursor: pointer;" id="btn-register">Регистрация</a>
+			</div>
+			<div class="forgot-pas">
+				<p class="btn-pass" onclick="togglePass()">Я забыл(-а) пароль</p>
+			</div>
+
+		</form>
+	</section>
+
+
+	<footer class="footer" id="footer">
+		<div class="group">
+		<a href="index.php">
+			<div class="logo" id="logo">
+			<h3 style="color: #F3F3F3"><span>Uni</span>ledge</h3>
+			<div class="line">
+			<div class="blue"></div>
+			</div>
+			</div>
+		</a>
+		<div class="subscribe-box">
+			<p>Если вы хотите получать уведомления о новых обновлениях и внутренних грантах университетов</p>
+			<a href="https://t.me/uniknowledge" target="blank" class="btn" style="color: #fff; border-color: #aaa; margin-bottom: 3vh">Join telegram</a>
+		</div>
+		</div>
+		<div class="common-group">
+		<div class="group2">
+			<h3>Контакты</h3>
+			<a href="mailto:support@uni1edge.kz" class="link-footer">support@uni1edge.kz</a><br><br>
+		</div>
+		<div class="group2">
+			<h3>Помощь</h3>
+			<div class="links-footer">
+			<a href="help.php" class="link-footer">Помощь</a><br><br>
+			</div>
+			<p>2020 @ Uniledge.kz</p>
+		</div>
+		</div>
+	 </footer>
+	 
+	<div class="popup" id="popup">
+		<form id="formForgot" style="display: flex; flex-direction: column; align-items: center;">
+			<h3 style="margin-bottom: 5%;">Восстановление пароля</h3>
+			<span style="display: block; margin-bottom: 5%; color: #2ca5eb; font-weight: 700;">ВНИМАНИЕ! Письмо может находиться в папке "спам"</span>
+			<label for="email-forgot" style="text-align: left;" id="label-forgot">Email</label>
+			<input type="email" name="email-forgot" pattern='^[A-Za-zА-Яа-яЁё0-9@,."\s]+$' class="email-login popup-input" id="email-forgot" required>
+			<button class="disabled-btn" id="btn-forgot" onclick="sendMail()" disabled>Восстановить</button>
+			<p class="btn-pass" onclick="togglePass()">Я вспомнил(-а)</p>
+		</form>
+	</div>
+
+ 	<script src="js/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+
+		function sendMail() {
+			$.ajax({
+				url: 'mail.php',
+				type: 'POST',
+				data: {email: $('#email-forgot').val()},
+				dataType: 'html',
+				success: function(data) {
+					togglePass();
+				}
+			}) 
+		}
+
+		$("#email-login").bind('blur', function(){
+                $.ajax({
+                    url: 'log.php',
+                    type: 'POST',
+                    data: ({email: $('input[name="email-login"]').val(),
+                            pass: $('input[name="password-login"]').val()
+                            }),
+                    dataType: "html",
+                    beforeSend: function() {
+                    	$('#txt').text('Проверка...')
+                	},
+                	success: function(data){
+						data = JSON.parse(data);
+						if(data == 0) {
+							$('#txt').text('Пользователь с такими данными не найден').css('color' , 'red');
+							$('button[type="submit"]').prop('disabled', true).addClass('disabled-btn').removeClass('btn').removeClass('accent');
+						} else {
+							$('button[type="submit"]').prop('disabled', false).removeClass('disabled-btn').addClass('btn').addClass('accent');
+							$('#txt').hide();
+						}
+                 }
+            })
+		})
+
+		$("#password-login").bind('blur', function(){
+                $.ajax({
+                    url: 'log.php',
+                    type: 'POST',
+                    data: ({email: $('input[name="email-login"]').val(),
+                            pass: $('input[name="password-login"]').val()
+                            }),
+                    dataType: "html",
+                    beforeSend: function() {
+                    	$('#txt').text('Проверка...')
+                	},
+                	success: function(data){
+						data = JSON.parse(data);
+						if(data == 0) {
+							$('#txt').text('Пользователь с такими данными не найден').css('color' , 'red');
+							$('button[type="submit"]').prop('disabled', true).addClass('disabled-btn').removeClass('btn').removeClass('accent');
+						} else {
+							$('button[type="submit"]').prop('disabled', false).removeClass('disabled-btn').addClass('btn').addClass('accent');
+							$('#txt').hide();
+						}
+                 }
+            })
+		})
+
+		$('#email-forgot').bind('blur', function() {
+				$.ajax({
+					url: "valid.php",
+					type: "POST",
+					data: ({email: $('input[name="email-forgot"]').val()}),
+					dataType: "html",
+					beforeSend: function() {
+						$('#label-forgot').text('Проверка...');
+					},
+					success: function(data) {
+						data = JSON.parse(data);
+						if(data == "Пользователь с таким email уже зарегистрирован") {
+							$('#label-forgot').text('Email').css('color', '#2CA5EB');
+							$('#email-forgot').css('border', '1px solid #2CA5EB');
+							$('#btn-forgot').prop('disabled', false).addClass('btn').addClass('accent').removeClass('disabled-btn');
+						} else {
+							$('#label-forgot').text('Аккаунт с таким email не найден').css('color', 'red');
+							$('#email-forgot').css('border', '1px solid red');
+							$('#btn-forgot').prop('disabled', true).removeClass('btn').removeClass('accent').addClass('disabled-btn');
+						}
+					}
+				})
+		})
+		
+		function togglePass() {
+
+			var blurHeader = document.getElementById('header');
+			blurHeader.classList.toggle('active');
+
+			var blurSection = document.getElementById('login-page');
+			blurSection.classList.toggle('active');
+
+			var blurFooter = document.getElementById('footer');
+			blurFooter.classList.toggle('active');
+
+			var popup = document.getElementById('popup');
+			popup.classList.toggle('active');
+		}
+
+	</script>
+	
+</body>
+</html>

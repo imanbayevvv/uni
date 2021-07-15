@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form id="form" style="display: flex; flex-direction: column; width: 200px; margin: 20vh auto;">
+        <input type="text" id="txt">
+        <input type="submit" id="btn">
+    </form>
+
+    <button id="edit">Edit</button>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+
+        var active;
+        var cnt = 0;
+
+        $(document).ready(function(){
+           $('#txt').bind('mouseover', ()=> {
+
+            
+            
+            if(cnt == 0) {
+                var edit = document.createElement("button");
+                edit.setAttribute('id', 'edit');
+                edit.innerHTML = "Edit";
+                var txt = document.getElementById('txt');
+                parentTxt = txt.parentNode;
+                parentTxt.insertBefore(edit, txt);
+                cnt++;
+            }
+
+           });
+
+           $('#txt').bind('mouseup', ()=> {
+            alert('hello');
+            // if(cnt == 0) {
+            //     var edit = document.createElement("button");
+            //     edit.setAttribute('id', 'edit');
+            //     edit.innerHTML = "Edit";
+            //     var txt = document.getElementById('txt');
+            //     parentTxt = txt.parentNode;
+            //     parentTxt.insertBefore(edit, txt);
+            //     cnt++;
+            // }
+
+           });
+           
+        })
+
+    </script>
+
+</body>
+</html>
